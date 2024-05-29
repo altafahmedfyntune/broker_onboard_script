@@ -32,6 +32,15 @@ def pip_request():
         print(f"Error Installing Re ': {e}")
 
 
+def pip_mysql():
+    try:
+        print("----------Installing MySQL Library----------")
+        subprocess.run(["pip", "install", "mysql-connector-python"])
+        print("----------Request MySQL Installed----------")
+    except Exception as e:
+        print(f"Error Installing Re ': {e}")
+
+
 def create_table(database_name, table_name):
     # Create table in MySQL
     create_query = f"CREATE TABLE {database_name}.{table_name} (first_name VARCHAR(50), last_name VARCHAR(50), age INT);"

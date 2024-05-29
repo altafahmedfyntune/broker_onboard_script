@@ -1,7 +1,9 @@
 import requests
 
+from readFile import config
 
-def get_data(url, payload = None):
+
+def get_data(url, payload=None):
     response = requests.post(url, payload)
     return response
 
@@ -20,3 +22,9 @@ def downloadFile(url, file_name):
     else:
         print('Failed to download the Setup DB file:', response.status_code)
         return False
+
+
+def updateInstanceStatus(deployment_status):
+    data = {'deployment_status': deployment_status}
+    response = requests.post(config('api_url') + 'api/updateOnboardingStatus', data)
+    return response
