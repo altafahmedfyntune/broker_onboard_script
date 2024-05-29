@@ -29,8 +29,8 @@ def setup_frontend(original_file_path, new_file_path, new_api_base_url):
                 env_file.write(line + '\n')
 
     print(f".env file created and updated with new API base URL: {new_api_base_url}")
-    # run_command('npm i')
-    # run_command('npm install --force')
+    run_command('npm i')
+    run_command('npm install --force')
     os.chdir('../')
     print('Current DIR : ' + os.getcwd())
 
@@ -73,10 +73,10 @@ def setup_backend(original_file_path, new_file_path, replacements):
                 env_file.write(line + '\n')
 
     print(f".env file created and updated with provided replacements")
-    # run_command('composer install')
-    # run_command('php artisan migrate')
-    # run_command('php artisan db:seed')
-    # run_command('php artisan key:generate')
+    run_command('composer install')
+    run_command('php artisan migrate')
+    run_command('php artisan db:seed')
+    run_command('php artisan key:generate')
     os.chdir('../')
     print('Current DIR : ' + os.getcwd())
 
@@ -126,7 +126,7 @@ def setup_ckyc(original_file_path, new_file_path, replacements):
 
 
 def create_virtual_host_config(original_file_path, new_file_path, server_name):
-    os.chdir('/python_script_broker_onboard/src/')
+    os.chdir('var/www/html/broker_onboard_script/src/')
     print(os.getcwd())
     print('hi1')
     # Read the content from the original file

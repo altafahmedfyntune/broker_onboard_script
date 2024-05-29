@@ -1,4 +1,5 @@
 from pprint import pprint
+import os
 
 from readFile import config
 from run_command import update_apt, pip_request, create_and_populate_database, create_sqlite_db, read_sql_file, \
@@ -73,14 +74,15 @@ try:
         backend_env['db_username'] = database[0]['db_username']
         backend_env['db_password'] = database[0]['db_password']
         pprint(backend_env)
+        env_file_name = '.env'  # The new .env file to be created
+        os.chdir('/var/www/html/')
         run_command(
             'git clone https://github.com/Fyntune/motor_2.0_backend.git')
-        setup_backend('backend_env.txt', '.env', backend_env)
+        setup_backend('backend_env.txt', env_file_name, backend_env)
         run_command(
             'git clone https://github.com/Fyntune/motor_2.0_frontend.git')
 
         original_file_path = 'frontend_env.txt'  # The file containing the original .env content
-        env_file_name = '.env'  # The new .env file to be created
         setup_frontend(original_file_path, env_file_name, api_base_url)
         ckyc_env = {}
         ckyc_env['app_name'] = broker_name + " CKYC"
