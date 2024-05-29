@@ -1,0 +1,15 @@
+GENERATE_SOURCEMAP=false
+SKIP_PREFLIGHT_CHECK=true
+REACT_APP_API_BASE_URL= http://localhost:8000/api
+REACT_APP_KEY_ID_RAZORPAY_TEST=rzp_test_TNM7NAj5tr8DiY
+REACT_APP_KEY_SECRET_RAZORPAY_TEInterimST=JEkpsKDaDPZ9RNoBpomvm2ib
+REACT_APP_BROKER=RB
+REACT_APP_TITLE=RenewBuy
+REACT_APP_FAVICON=faviconRB.jpg
+REACT_APP_META=Motor Insurance, Compare and get the best deals.
+REACT_APP_PRODUCT=https://accounts.rbstaging.in/static/js/loginWidget.js
+REACT_APP_BASENAME=NA
+REACT_APP_PROD=NO
+REACT_APP_PAYTM=https://securegw-stage.paytm.in/merchantpgpui/checkoutjs/merchants/UIICtv40610765178103.js
+REACT_APP_GTAG=NA
+REACT_APP_CLARITY=d4ygkflrtn

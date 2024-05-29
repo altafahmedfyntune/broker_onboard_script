@@ -1,0 +1,9 @@
+<VirtualHost *:80> 
+    DocumentRoot "var/www/html/ckyc-api/public"
+    ServerName ckyc-api.test
+    ServerAlias *.ckyc-api.test
+    <Directory "var/www/html/ckyc-api/public">
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>

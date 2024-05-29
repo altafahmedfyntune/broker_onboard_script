@@ -1,0 +1,9 @@
+<VirtualHost *:80> 
+    DocumentRoot "var/www/html/motor_2.0_frontend"
+    ServerName motor_2.0_frontend.test
+    ServerAlias *.motor_2.0_frontend.test
+    <Directory "var/www/html/motor_2.0_frontend">
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
