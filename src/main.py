@@ -20,12 +20,12 @@ try:
     install_sqlite()
     pip_request()
     pip_mysql()
-    print(config('api_url') + "exportSql")
-    response = get_data(config('api_url') + "api/exportSql", {
+    print(config('app_url') + "exportSql")
+    response = get_data(config('app_url') + "api/exportSql", {
         "domain_instance_id": "1"
     }).json()
     if response['status']:
-        fileUrl = config('api_url') + response['file_name']
+        fileUrl = config('app_url') + response['file_name']
         print(fileUrl)
         dbDumpName = 'setupDb.sql'
         downloaded = downloadFile(fileUrl, dbDumpName)

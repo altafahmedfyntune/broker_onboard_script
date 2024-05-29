@@ -1,9 +1,5 @@
 {
   "instance_id": "1",
-  "api_url": "http://broker_onboard.test/",
-  "setup_db_name": "setupDB",
-  "modified_setup_db_path": "setup_modified.sql",
-  "motor_be_url": "https://github.com/Fyntune/motor_2.0_backend.git",
-  "motor_fe_url": "https://github.com/Fyntune/motor_2.0_frontend.git",
-  "ckyc_be_url": "https://github.com/Fyntune/ckyc-api.git"
+  "app_url": "http://broker_onboard.test``  `/",
+  "setup_db_name": "setupDB"
 }
