@@ -2,7 +2,6 @@ import os
 import re
 import sqlite3
 import subprocess
-import mysql.connector
 
 
 def update_apt():
@@ -160,33 +159,3 @@ def run_command(command):
         print(f"Error Running Command ': {e}")
 
 
-
-
-def import_sql_dump(host, username, password, database_name, dump_file):
-    try:
-        # Connect to the MySQL database
-        conn = mysql.connector.connect(
-            host=host,
-            user=username,
-            password=password,
-            database=database_name
-        )
-        cursor = conn.cursor()
-
-        # Read the SQL dump file with UTF-8 encoding
-        with open(dump_file, 'r', encoding='utf-8') as f:
-            sql_commands = f.read()
-
-        # Split SQL commands by semicolons and execute each command
-        for command in sql_commands.split(';'):
-            command = command.strip()  # Remove leading/trailing whitespace
-            if command:  # Check if the command is not empty
-                print(f"Executing command: {command}")  # Add this line for debugging
-                cursor.execute(command)
-        # Commit the transaction
-        conn.commit()
-        conn.close()
-        print(f"SQL dump imported successfully in {database_name} DB .")
-
-    except mysql.connector.Error as e:
-        print(f"Error importing SQL dump: {e}")

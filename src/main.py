@@ -2,13 +2,9 @@ from pprint import pprint
 import os
 
 from readFile import config
-from run_command import update_apt, pip_request, create_and_populate_database, create_sqlite_db, read_sql_file, \
-    modify_sql_for_sqlite, write_sql_file, run_command, import_sql_dump, pip_mysql
-from run_command import install_sqlite
 from request import get_data, downloadFile, updateInstanceStatus
 from execSqlite import create_tables, execute_sql_script
 from get_data_sqlite import fetch_data_from_db
-from write_env import setup_frontend, setup_backend, setup_ckyc, create_virtual_host_config
 
 try:
     statusUpdated = updateInstanceStatus('started')
@@ -17,10 +13,14 @@ try:
     print("------Python Script for Broker Onboarding Started------")
     instance_id = config('instance_id')
     print("Instance ID : " + instance_id)
+    from run_command import update_apt, install_sqlite, pip_request, pip_mysql
     update_apt()
     install_sqlite()
     pip_request()
     pip_mysql()
+    from run_command import create_and_populate_database, create_sqlite_db, read_sql_file, \
+            modify_sql_for_sqlite, write_sql_file, run_command, import_sql_dump
+    from write_env import setup_frontend, setup_backend, setup_ckyc, create_virtual_host_config
     print(config('app_url') + "exportSql")
     response = get_data(config('app_url') + "api/exportSql", {
         "domain_instance_id": "1"
