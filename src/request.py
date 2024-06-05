@@ -25,6 +25,6 @@ def downloadFile(url, file_name):
 
 
 def updateInstanceStatus(deployment_status):
-    data = {'deployment_status': deployment_status}
+    data = {'deployment_status': deployment_status, 'instance_id' : config('instance_id')}
     response = requests.post(config('app_url') + 'api/updateOnboardingStatus', data)
-    return response
+    return response.json()

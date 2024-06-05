@@ -1,0 +1,47 @@
+server {
+        index index.html index.htm;
+        index index.html index.htm index.php;
+        server_name domain_name;
+        location ~ \.php$ {
+                add_header X-XSS-Protection "1; mode=block";
+                add_header X-Frame-Options "SAMEORIGIN";
+                add_header X-Content-Type-Options nosniff;
+                add_header Strict-Transport-Security: "max-age=31536000; includeSubDomains; always";
+                add_header Strict-Transport-Security: "max-age=63072000; includeSubDomains; preload";
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/run/php/php8.0-fpm.sock;
+                fastcgi_read_timeout 240;
+        }
+         location /mapi {
+                alias /var/www/html/domain_name/motor_2.0_backend/public;
+                try_files $uri $uri/ @ckycApiRewrite;
+                location ~ \.php$ {
+                    include fastcgi_params;
+                    fastcgi_param SCRIPT_FILENAME $request_filename;
+                    fastcgi_pass   unix:/run/php/php8.0-fpm.sock;
+                }
+         }
+         location @ckycApiRewrite {
+                rewrite /mapi/(.*)$ /mapi/index.php?/$1 last;
+         }
+         location /capi {
+                alias /var/www/html/domain_name/ckyc-api/public;
+                try_files $uri $uri/ @motorApiRewrite;
+                location ~ \.php$ {
+                    include fastcgi_params;
+                    fastcgi_param SCRIPT_FILENAME $request_filename;
+                    fastcgi_pass   unix:/run/php/php8.0-fpm.sock;
+                }
+         }
+         location @motorApiRewrite {
+                rewrite /capi/(.*)$ /capi/index.php?/$1 last;
+         }
+         location ~ ^/{
+                try_files $uri $uri/ /domain_name/motor_2.0_frontend/public/index.html;
+         }
+}
+server {
+        listen 80;
+        server_name domain_name;
+        return 404; # managed by Certbot
+}
